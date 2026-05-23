@@ -1,0 +1,110 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-checkout-to-inventory","namespace":"lab4"},"spec":{"ingress":[{"from":[{"podSelector":{"matchLabels":{"app":"checkout-fn"}}}]}],"podSelector":{"matchLabels":{"app":"inventory-fn"}},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-05-22T15:21:16Z"
+    generation: 1
+    name: allow-checkout-to-inventory
+    namespace: lab4
+    resourceVersion: "153881"
+    uid: 54690dc5-5131-47f5-a2e3-2976127ec56b
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: checkout-fn
+    podSelector:
+      matchLabels:
+        app: inventory-fn
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-checkout-to-pricing","namespace":"lab4"},"spec":{"ingress":[{"from":[{"podSelector":{"matchLabels":{"app":"checkout-fn"}}}]}],"podSelector":{"matchLabels":{"app":"pricing-fn"}},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-05-22T15:21:16Z"
+    generation: 1
+    name: allow-checkout-to-pricing
+    namespace: lab4
+    resourceVersion: "153880"
+    uid: 109ae2af-e3c1-40b2-bcc2-413931084e21
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: checkout-fn
+    podSelector:
+      matchLabels:
+        app: pricing-fn
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-gateway-to-checkout","namespace":"lab4"},"spec":{"ingress":[{"from":[{"podSelector":{"matchLabels":{"app":"gateway"}}}]}],"podSelector":{"matchLabels":{"app":"checkout-fn"}},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-05-22T15:21:16Z"
+    generation: 1
+    name: allow-gateway-to-checkout
+    namespace: lab4
+    resourceVersion: "153879"
+    uid: 774ab79d-d398-4b96-93c4-eecee8c13822
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: gateway
+    podSelector:
+      matchLabels:
+        app: checkout-fn
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-ingress-to-gateway","namespace":"lab4"},"spec":{"ingress":[{}],"podSelector":{"matchLabels":{"app":"gateway"}},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-05-22T15:21:16Z"
+    generation: 1
+    name: allow-ingress-to-gateway
+    namespace: lab4
+    resourceVersion: "153878"
+    uid: 37dcb234-943d-4551-bedf-037ea7a094f2
+  spec:
+    ingress:
+    - {}
+    podSelector:
+      matchLabels:
+        app: gateway
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"default-deny-ingress","namespace":"lab4"},"spec":{"podSelector":{},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-05-22T15:21:16Z"
+    generation: 1
+    name: default-deny-ingress
+    namespace: lab4
+    resourceVersion: "153877"
+    uid: 2a178e56-7e30-4804-9b1d-ec2590258122
+  spec:
+    podSelector: {}
+    policyTypes:
+    - Ingress
+kind: List
+metadata:
+  resourceVersion: ""
