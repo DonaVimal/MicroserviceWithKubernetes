@@ -1,0 +1,65 @@
+{"level":"info","ts":"2026-05-20T22:16:23Z","msg":"Kubescape scanner initializing..."}
+{"level":"info","ts":"2026-05-20T22:16:25Z","msg":"node-agent detected, using CRD-based host sensor"}
+{"level":"info","ts":"2026-05-20T22:16:25Z","msg":"Using CRD-based host sensor data collection (no deployment needed)"}
+{"level":"warn","ts":"2026-05-20T22:16:25Z","msg":"node-agent status: Failed to list OsReleaseFile CRDs - node-agent may not be deployed","error":"the server could not find the requested resource"}
+{"level":"error","ts":"2026-05-20T22:16:25Z","msg":"failed to init host scanner","error":"failed to verify CRD access: the server could not find the requested resource (ensure node-agent is deployed)"}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Initialized scanner"}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Loading policies..."}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Loaded policies"}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Loading exceptions..."}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Loaded exceptions"}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Loading account configurations..."}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Loaded account configurations"}
+{"level":"info","ts":"2026-05-20T22:16:28Z","msg":"Accessing Kubernetes objects..."}
+{"level":"info","ts":"2026-05-20T22:16:29Z","msg":"Accessed Kubernetes objects"}
+{"level":"info","ts":"2026-05-20T22:16:29Z","msg":"Scanning","Cluster":"default"}
+{"level":"info","ts":"2026-05-20T22:16:30Z","msg":"Done scanning","Cluster":"default"}
+{"level":"info","ts":"2026-05-20T22:16:31Z","msg":"Done aggregating results"}
+
+
+──────────────────────────────────────────────────
+
+Framework scanned: NSA
+
+╭─────────────────┬────╮
+│        Controls │ 26 │
+│          Passed │ 12 │
+│          Failed │ 9  │
+│ Action Required │ 5  │
+╰─────────────────┴────╯
+
+Failed resources by severity:
+
+╭──────────┬────╮
+│ Critical │ 0  │
+│     High │ 14 │
+│   Medium │ 57 │
+│      Low │ 7  │
+╰──────────┴────╯
+
+Run with '--verbose'/'-v' to see control failures for each resource.
+
+╭──────────┬─────────────────────────────────────────────┬──────────────────┬───────────────┬────────────────────╮
+│ Severity │ Control name                                │ Failed resources │ All Resources │ Compliance score   │
+├──────────┼─────────────────────────────────────────────┼──────────────────┼───────────────┼────────────────────┤
+│ Critical │ Disable anonymous access to Kubelet service │         0        │       0       │ Action Required ** │
+│ Critical │ Enforce Kubelet client TLS authentication   │         0        │       0       │ Action Required ** │
+│   High   │ Ensure CPU limits are set                   │         7        │       13      │         46%        │
+│   High   │ Ensure memory limits are set                │         7        │       13      │         46%        │
+│  Medium  │ Non-root containers                         │        13        │       13      │         0%         │
+│  Medium  │ Allow privilege escalation                  │         7        │       13      │         46%        │
+│  Medium  │ Ingress and Egress blocked                  │        13        │       13      │         0%         │
+│  Medium  │ Automatic mapping of service account        │        14        │       22      │         36%        │
+│  Medium  │ Cluster internal networking                 │         3        │       5       │         40%        │
+│  Medium  │ Linux hardening                             │         7        │       13      │         46%        │
+│  Medium  │ Secret/etcd encryption enabled              │         0        │       0       │  Action Required * │
+│  Medium  │ Audit logs enabled                          │         0        │       0       │  Action Required * │
+│    Low   │ Immutable container filesystem              │         7        │       13      │         46%        │
+│    Low   │ PSP enabled                                 │         0        │       0       │  Action Required * │
+├──────────┼─────────────────────────────────────────────┼──────────────────┼───────────────┼────────────────────┤
+│          │               Resource Summary              │        23        │       56      │       57.97%       │
+╰──────────┴─────────────────────────────────────────────┴──────────────────┴───────────────┴────────────────────╯
+
+🚨 * failed to get cloud provider, cluster: default
+🚨 ** This control is scanned exclusively by the Kubescape operator, not the Kubescape CLI. Install the Kubescape operator:
+     https://kubescape.io/docs/install-operator/.

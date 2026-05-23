@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   const rid = getReqId(req);
   req.requestId = rid;
   res.setHeader('X-Request-Id', rid);
-  console.log(`[rid=${rid}] ${req.method} ${req.path}`);
+  console.log(JSON.stringify({ timestamp: new Date().toISOString(), level: "info", rid, method: req.method, path: req.path, service: "pricing-fn" }));
   next();
 });
 
